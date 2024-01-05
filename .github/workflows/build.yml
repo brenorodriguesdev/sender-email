@@ -17,4 +17,4 @@ jobs:
     - run: npm run build
     - run: docker build -t email-api .
     - run: docker rm -f email-api
-    - run: docker run --name email-api -e PORT=${{ secrets.PORT }} -e APP_SECRET=${{ secrets.APP_SECRET }} -e EMAIL_SERVER=${{ secrets.EMAIL_SERVER }} -e EMAIL_PORT=${{ secrets.EMAIL_PORT }} -e EMAIL_TLS=${{ secrets.EMAIL_TLS }} -e EMAIL_NAME=${{ secrets.EMAIL_NAME }} -e EMAIL=${{ secrets.EMAIL }} -e EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }} --network host -d email-api
+    - run: docker run --name email-api -e PORT=${{ secrets.PORT }} -e APP_SECRET=${{ secrets.APP_SECRET }} -e EMAIL_SERVER=${{ secrets.EMAIL_SERVER }} -e EMAIL_PORT=${{ secrets.EMAIL_PORT }} -e EMAIL_TLS=${{ secrets.EMAIL_TLS }} -e EMAIL_NAME=${{ secrets.EMAIL_NAME }} -e EMAIL=${{ secrets.EMAIL }} -e EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }} 5700:5700 --network cobranca -d email-api
