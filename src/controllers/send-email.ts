@@ -6,6 +6,7 @@ import { type SendEmailProps } from '../contracts/send-email'
 
 interface SendEmailRequest extends Request {
   body: SendEmailProps
+  files: Express.Multer.File[]
 }
 
 export const sendEmailController = async (request: SendEmailRequest, response: Response): Promise<Response> => {
@@ -19,7 +20,7 @@ export const sendEmailController = async (request: SendEmailRequest, response: R
     if (emailFieldError) {
       return badRequest(response, emailFieldError.message)
     }
-    await sendEmailService(request.body)
+    await sendEmailService({ ...request.body, attachments: request.files })
     return noContent(response)
   } catch (error) {
     console.log(error)

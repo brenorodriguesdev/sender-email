@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
   }
 })
 
-export const sendEmailService = async ({ html, subject, destionationName, destinationEmail }: SendEmailProps): Promise<void> => {
+export const sendEmailService = async ({ html, subject, destionationName, destinationEmail, attachments }: SendEmailProps): Promise<void> => {
   await transporter.sendMail({
     to: {
       name: destionationName,
@@ -24,6 +24,15 @@ export const sendEmailService = async ({ html, subject, destionationName, destin
       address: String(process.env.EMAIL)
     },
     subject,
-    html
+    html,
+    ...(attachments && {
+      attachments: attachments.map(attachment => {
+        const tamanhoExtensao = attachment.mimetype === 'image/jpeg' ? 5 : 4
+        return {
+          filename: `${Date.now()}${attachment.originalname.slice(attachment.originalname.length - tamanhoExtensao, attachment.originalname.length)}`,
+          content: attachment.buffer
+        }
+      })
+    })
   })
 }

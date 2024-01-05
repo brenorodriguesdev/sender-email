@@ -3,4 +3,5 @@ export interface SendEmailProps {
   html: string
   destionationName: string
   destinationEmail: string
+  attachments: Express.Multer.File[]
 }
