@@ -1,11 +1,5 @@
 import nodemailer from 'nodemailer'
-
-interface SendEmailProps {
-  subject: string
-  html: string
-  destionationName: string
-  destinationEmail: string
-}
+import { type SendEmailProps } from '../contracts/send-email'
 
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_SERVER,
