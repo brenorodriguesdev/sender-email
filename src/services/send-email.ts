@@ -1,5 +1,7 @@
 import nodemailer from 'nodemailer'
 import { type SendEmailProps } from '../contracts/send-email'
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_SERVER,

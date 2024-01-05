@@ -22,6 +22,7 @@ export const sendEmailController = async (request: SendEmailRequest, response: R
     await sendEmailService(request.body)
     return noContent(response)
   } catch (error) {
+    console.log(error)
     return serverError(response)
   }
 }
