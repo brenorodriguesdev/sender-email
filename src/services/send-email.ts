@@ -26,11 +26,12 @@ export const sendEmailService = async ({ html, subject, destionationName, destin
     subject,
     html,
     ...(attachments && {
-      attachments: attachments.map(attachment => {
+      attachments: attachments.map((attachment, index) => {
         const tamanhoExtensao = attachment.mimetype === 'image/jpeg' ? 5 : 4
         return {
           filename: `${Date.now()}${attachment.originalname.slice(attachment.originalname.length - tamanhoExtensao, attachment.originalname.length)}`,
-          content: attachment.buffer
+          content: attachment.buffer,
+          cid: `${index}`
         }
       })
     })
