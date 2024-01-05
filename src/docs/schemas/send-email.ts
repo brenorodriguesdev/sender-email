@@ -12,6 +12,13 @@ export const sendEmailParamsSchema = {
     },
     destinationEmail: {
       type: 'string'
+    },
+    attachments: {
+      type: 'array',
+      items: {
+        type: 'string',
+        format: 'binary'
+      }
     }
   },
   required: ['subject', 'html', 'destinationName', 'destinationEmail']
